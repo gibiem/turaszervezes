@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Az oldalam címe</title>
+<style>
+  :root {
+    --ink: #1d2733; --muted: #5a6877; --bg: #fbfcfd; --panel: #eef3f7;
+    --line: #cfd9e2; --accent: #176b87;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #e6edf3; --muted: #9fb0c0; --bg: #14191f; --panel: #1d252e; --line: #33414f; --accent: #6cc3de; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+  body { margin: 0; font: 17px/1.65 Georgia, "Times New Roman", serif; color: var(--ink); background: var(--bg); }
+  nav { position: sticky; top: 0; background: var(--panel); border-bottom: 1px solid var(--line); padding: .6rem 1rem; display: flex; gap: 1rem; flex-wrap: wrap; font-family: system-ui, sans-serif; font-size: .95rem; }
+  nav a { color: var(--accent); text-decoration: none; }
+  nav a:hover { text-decoration: underline; }
+  main { max-width: 52rem; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 1.5rem 0 .5rem; }
+  h2 { font-size: 1.4rem; margin: 2.5rem 0 .5rem; border-bottom: 1px solid var(--line); padding-bottom: .3rem; }
+  .meta { color: var(--muted); font-family: system-ui, sans-serif; font-size: .9rem; }
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; min-width: 36rem; font: .92rem/1.45 system-ui, sans-serif; }
+  th, td { border: 1px solid var(--line); padding: .5rem .6rem; text-align: left; vertical-align: top; }
+  th { background: var(--panel); }
+  details { border: 1px solid var(--line); border-radius: 6px; margin: .6rem 0; background: var(--panel); }
+  summary { cursor: pointer; padding: .6rem .9rem; font-family: system-ui, sans-serif; font-weight: 600; }
+  summary:focus-visible, button:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  details > div { padding: 0 .9rem .8rem; }
+  button { font: .9rem system-ui, sans-serif; padding: .4rem .8rem; border: 1px solid var(--accent); background: transparent; color: var(--accent); border-radius: 6px; cursor: pointer; }
+  button:hover { background: var(--accent); color: var(--bg); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#feladat">Feladat</a>
+  <a href="#temak">Témák</a>
+  <a href="#tema-1">1. téma</a>
+  <a href="#tema-2">2. téma</a>
+</nav>
+
+<main>
+  <p class="meta">Csoportmunka</p>
+  <h1>Ide jön a fő cím</h1>
+
+  <h2 id="feladat">A feladat</h2>
+  <p>Ide írd le, mit kell csinálni az oldalon. Új bekezdéshez új &lt;p&gt; sor kell.</p>
+
+  <h2 id="temak">A témák</h2>
+  <ul>
+    <li><a href="#tema-1">Első téma</a></li>
+    <li><a href="#tema-2">Második téma</a></li>
+  </ul>
+
+  <h2 id="tema-1">1. Első téma</h2>
+  <p class="meta">Időkeret: 45 perc · Évfolyam: 9–10.</p>
+
+  <div class="scroll">
+    <table>
+      <thead>
+        <tr><th>Idő</th><th>Tanári tevékenység</th><th>Tanulói tevékenység</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>0–5'</td><td>Ráhangolás.</td><td>Válaszolnak a kérdésre.</td></tr>
+        <tr><td>5–20'</td><td>Magyarázat.</td><td>Jegyzetelnek.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    <button type="button" onclick="toggleAll('tema-1-magyarazat', true)">Mind kinyit</button>
+    <button type="button" onclick="toggleAll('tema-1-magyarazat', false)">Mind bezár</button>
+  </p>
+
+  <section id="tema-1-magyarazat">
+    <details>
+      <summary>Mi működik jól?</summary>
+      <div><p>Ide kerül a kinyitható magyarázat szövege.</p></div>
+    </details>
+    <details>
+      <summary>Mit lehetne javítani?</summary>
+      <div><p>Ide kerül a második magyarázat.</p></div>
+    </details>
+  </section>
+
+  <h2 id="tema-2">2. Második téma</h2>
+  <p>Másold le az első téma blokkját, és írd át a tartalmát. Az id-k legyenek egyediek.</p>
+</main>
+
+<script>
+  // A "Mind kinyit / Mind bezár" gombok ezt hívják meg.
+  function toggleAll(sectionId, open) {
+    document.querySelectorAll('#' + sectionId + ' details').forEach(function (d) { d.open = open; });
+  }
+</script>
+</body>
+</html>
